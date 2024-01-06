@@ -11,6 +11,8 @@
 		00E923C72B493EC000181ECF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E923C62B493EC000181ECF /* ContentView.swift */; };
 		00E923C92B493EC100181ECF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00E923C82B493EC100181ECF /* Assets.xcassets */; };
 		00E923CD2B493EC100181ECF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00E923CC2B493EC100181ECF /* Preview Assets.xcassets */; };
+		00E923D42B493EDC00181ECF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E923D32B493EDC00181ECF /* Extensions.swift */; };
+		00E923D62B49408E00181ECF /* SpirographShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E923D52B49408E00181ECF /* SpirographShape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		00E923C82B493EC100181ECF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00E923CA2B493EC100181ECF /* SpirographHWS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SpirographHWS.entitlements; sourceTree = "<group>"; };
 		00E923CC2B493EC100181ECF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		00E923D32B493EDC00181ECF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		00E923D52B49408E00181ECF /* SpirographShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpirographShape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			children = (
 				00E923C42B493EC000181ECF /* SpirographHWSApp.swift */,
 				00E923C62B493EC000181ECF /* ContentView.swift */,
+				00E923D52B49408E00181ECF /* SpirographShape.swift */,
+				00E923D32B493EDC00181ECF /* Extensions.swift */,
 				00E923C82B493EC100181ECF /* Assets.xcassets */,
 				00E923CA2B493EC100181ECF /* SpirographHWS.entitlements */,
 				00E923CB2B493EC100181ECF /* Preview Content */,
@@ -139,7 +145,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00E923D62B49408E00181ECF /* SpirographShape.swift in Sources */,
 				00E923C72B493EC000181ECF /* ContentView.swift in Sources */,
+				00E923D42B493EDC00181ECF /* Extensions.swift in Sources */,
 				00E923C52B493EC000181ECF /* SpirographHWSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
