@@ -59,6 +59,9 @@ struct ContentView: View {
                     }
                     .padding(.horizontal)
                 }
+                
+                NavigationLink("→", destination: ArrowView.init)
+                    .buttonStyle(.bordered)
             }
             .sheet(isPresented: $show) {
                 renderToImage { uiImage in
