@@ -30,10 +30,10 @@
 <table>
   <tr>
     <td>
-      <img src="https://raw.githubusercontent.com/c2p-cmd/SpirographHWS/main/Screenshots/ss1.png" alt="Screenshot 1" style="width: 100%; max-height: 600px; object-fit: contain;"/>
+      <img src="https://raw.githubusercontent.com/c2p-cmd/SpirographHWS/main/Screenshots/ss1.PNG" alt="Screenshot 1" style="width: 100%; max-height: 600px; object-fit: contain;"/>
     </td>
     <td>
-      <img src="https://raw.githubusercontent.com/c2p-cmd/SpirographHWS/main/Screenshots/ss2.png" alt="Screenshot 2" style="width: 100%; max-height: 600px; object-fit: contain;"/>
+      <img src="https://raw.githubusercontent.com/c2p-cmd/SpirographHWS/main/Screenshots/ss2.PNG" alt="Screenshot 2" style="width: 100%; max-height: 600px; object-fit: contain;"/>
     </td>
   </tr>
 </table>
