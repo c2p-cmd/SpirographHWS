@@ -32,6 +32,7 @@ struct ContentView: View {
                 Spacer()
                 
                 mySpirograph()
+                    .frame(width: 300, height: 300)
                     .gesture(myGesture)
                 
                 Spacer()
@@ -95,7 +96,6 @@ struct ContentView: View {
             amount: amount
         )
         .stroke(color)
-        .frame(width: 300, height: 300)
         .rotationEffect(rotation, anchor: .center)
     }
     
