@@ -31,7 +31,7 @@ struct Arrow: Shape {
 }
 
 struct ArrowView: View {
-    
+    @State private var lineWidth = 10.0
     
     var body: some View {
         VStack {
@@ -42,15 +42,21 @@ struct ArrowView: View {
             Spacer()
             
             Arrow()
-                .stroke(Color.yellow, lineWidth: 10)
+                .stroke(Color.yellow, lineWidth: lineWidth)
                 .fill(LinearGradient(
                     colors: [.red, .purple, .blue],
                     startPoint: .leading,
                     endPoint: .trailing
                 ))
+                .animation(.bouncy, value: lineWidth)
                 .frame(width: 200, height: 300)
             
             Spacer()
+        }
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                Stepper("LineWidth: \(lineWidth.formatted())", value: $lineWidth, in: 1...20, step: 0.5)
+            }
         }
         .padding(.horizontal)
         .navigationTitle("Arrow Challenge View")
