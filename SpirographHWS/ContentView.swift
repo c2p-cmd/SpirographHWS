@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var innerRadius = 125.0
-    @State private var outerRadius = 75.0
-    @State private var distance = 25.0
+    @AppStorage("innerRadius") private var innerRadius = 125.0
+    @AppStorage("outerRadius") private var outerRadius = 75.0
+    @AppStorage("distance") private var distance = 25.0
+    
+    @AppStorage("title") private var title = "Spirograph ⚛️"
+    
     @State private var amount = 1.0
     @State private var color: Color = .cyan
     @State private var rotation: Angle = .degrees(.zero)
+    @State private var show = false
     
     var myGesture: some Gesture {
         RotateGesture()
@@ -23,45 +27,99 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack(spacing: 0) {
-            Spacer()
-            
-            Spirograph(
-                innerRadius: innerRadius.toInt(),
-                outerRadius: outerRadius.toInt(),
-                distance: distance,
-                amount: amount
-            )
-            .stroke(color)
-            .frame(width: 300, height: 300)
-            .rotationEffect(rotation, anchor: .center)
-            .gesture(myGesture)
-            
-            Spacer()
-            
-            Group {
-                Text("Inner Radius: \(innerRadius.toInt())")
-                Slider(value: $innerRadius, in: 10...150)
-                    .padding([.horizontal, .bottom])
+        NavigationStack {
+            VStack(spacing: 0) {
+                Spacer()
                 
-                Text("Outer Radius: \(outerRadius.toInt())")
-                Slider(value: $outerRadius, in: 10...180)
-                    .padding([.horizontal, .bottom])
+                mySpirograph()
+                    .gesture(myGesture)
                 
-                Text("Distance: \(distance.toInt())")
-                Slider(value: $distance, in: 1...150, step: 1)
-                    .padding([.horizontal, .bottom])
+                Spacer()
                 
-                Text("Amount: \(amount.formatted())")
-                Slider(value: $amount)
-                    .padding([.horizontal, .bottom])
-                
-                ColorPicker(selection: $color, supportsOpacity: false) {
-                    Text("Color:")
+                Group {
+                    Text("Inner Radius: \(innerRadius.toInt())")
+                    Slider(value: $innerRadius, in: 10...150)
+                        .padding([.horizontal, .bottom])
+                    
+                    Text("Outer Radius: \(outerRadius.toInt())")
+                    Slider(value: $outerRadius, in: 10...180)
+                        .padding([.horizontal, .bottom])
+                    
+                    Text("Distance: \(distance.toInt())")
+                    Slider(value: $distance, in: 1...200, step: 1)
+                        .padding([.horizontal, .bottom])
+                    
+                    Text("Amount: \(amount.formatted())")
+                    Slider(value: $amount, in: 0...1)
+                        .padding([.horizontal, .bottom])
+                    
+                    ColorPicker(selection: $color, supportsOpacity: false) {
+                        Text("Color:")
+                    }
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
+            }
+            .sheet(isPresented: $show) {
+                renderToImage { uiImage in
+                    VStack {
+                        Image(uiImage: uiImage)
+                        
+                        Label("Share", systemImage: "square.and.arrow.up")
+                    }
+                    .font(.title.monospaced())
+                    .symbolEffect(.variableColor.cumulative.dimInactiveLayers.reversing)
+                    .tint(.mint)
+                }
+                .presentationDetents([.medium])
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle($title)
+            .toolbar {
+                Button {
+                    show = true
+                } label: {
+                    Label("Save", systemImage: "photo.badge.arrow.down")
+                        .animation(.default, value: show.description)
+                        .contentTransition(.symbolEffect(.replace.upUp.byLayer))
+                        .id(show.description)
+                }
             }
         }
+    }
+    
+    func mySpirograph() -> some View {
+        Spirograph(
+            innerRadius: innerRadius.toInt(),
+            outerRadius: outerRadius.toInt(),
+            distance: distance,
+            amount: amount
+        )
+        .stroke(color)
+        .frame(width: 300, height: 300)
+        .rotationEffect(rotation, anchor: .center)
+    }
+    
+    @MainActor
+    func renderToImage<Label: View>(
+        @ViewBuilder label: (UIImage) -> Label
+    ) -> some View {
+        let imageRenderer = ImageRenderer(content: mySpirograph())
+        imageRenderer.scale = 2.0
+        
+        let backUp = UIImage(systemName: "doc.text.image.fill")!
+        let uiImage = imageRenderer.uiImage ?? backUp
+        
+        return ShareLink(
+            item: Image(uiImage: uiImage),
+            preview: SharePreview(
+                "Spirograph",
+                image: Image(uiImage: uiImage),
+                icon: Image(uiImage: backUp)
+            ),
+            label: {
+                label(uiImage)
+            }
+        )
     }
 }
 

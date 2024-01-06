@@ -24,3 +24,16 @@
     .gesture(myGesture)
   ```
   - Math taken from: [WikiPedia](https://en.wikipedia.org/wiki/Spirograph#Mathematical_basis)
+
+## Screenshots
+
+<table>
+  <tr>
+    <td>
+      <img src="https://raw.githubusercontent.com/c2p-cmd/SpirographHWS/main/Screenshots/ss1.png" alt="Screenshot 1" style="width: 100%; max-height: 600px; object-fit: contain;"/>
+    </td>
+    <td>
+      <img src="https://raw.githubusercontent.com/c2p-cmd/SpirographHWS/main/Screenshots/ss2.png" alt="Screenshot 2" style="width: 100%; max-height: 600px; object-fit: contain;"/>
+    </td>
+  </tr>
+</table>
