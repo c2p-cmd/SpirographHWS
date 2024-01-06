@@ -13,6 +13,14 @@ struct ContentView: View {
     @State private var distance = 25.0
     @State private var amount = 1.0
     @State private var color: Color = .cyan
+    @State private var rotation: Angle = .degrees(.zero)
+    
+    var myGesture: some Gesture {
+        RotateGesture()
+            .onChanged { newValue in
+                rotation = newValue.rotation
+            }
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -26,6 +34,8 @@ struct ContentView: View {
             )
             .stroke(color)
             .frame(width: 300, height: 300)
+            .rotationEffect(rotation, anchor: .center)
+            .gesture(myGesture)
             
             Spacer()
             
